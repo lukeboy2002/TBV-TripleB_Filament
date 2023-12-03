@@ -1,48 +1,37 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+<x-app-layout>
+    <div class="grid grid-cols-1 sm:grid-cols-2 w-full">
+        <div class="hidden sm:block">
+            <img class="w-full h-full flex justify-center items-center object-cover" src={{asset('storage/backgrounds/login.jpeg')}} alt="" />
+        </div>
 
-        <x-validation-errors class="mb-4" />
+        <div class="bg-gray-800 flex flex-col justify-center">
+            <x-card.default class="max-w-[400px]">
+                <form method="POST" action="{{ route('login') }}" class="space-y-6">
+                    @csrf
+                    <h2 class='text-3xl text-orange-500 font-bold text-center'>Sign in to your account</h2>
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
-        @endif
+                    <div>
+                        <x-form.label for="email" value="Email" />
+                        <x-form.input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="email" />
+                        <x-form.input-error for="email" class="mt-2" />
+                    </div>
+                    <div>
+                        <x-form.label for="password" value="Password" />
+                        <x-form.input type="password" name="password" id="password" required autocomplete="current-password" />
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex space-x-2">
+                            <x-form.checkbox id="remember_me" name="remember" value="1" />
+                            <x-form.label for="remember_me" value="Remember me" />
+                        </div>
+                        @if (Route::has('password.request'))
+                            <x-link.primary href="{{ route('password.request') }}">Forgot your password?</x-link.primary>
+                        @endif
+                    </div>
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ms-4">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+                    <x-button.primary class="px-5 py-2.5 text-sm font-medium w-full">Log in</x-button.primary>
+                </form>
+            </x-card.default>
+        </div>
+    </div>
+</x-app-layout>
