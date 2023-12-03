@@ -5,6 +5,7 @@ namespace App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource;
 use App\Mail\InvitationMail;
 use App\Models\Invitation;
+use App\Models\User;
 use Filament\Actions;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
@@ -25,6 +26,17 @@ class ListUsers extends ListRecords
                         ->required()
                 ])
                 ->action(function ($data) {
+
+                    $userExists = User::where('email', $data['email'])->exists();
+
+                    if ($userExists) {
+                        Notification::make('userExists')
+                            ->body('User with this email already exists!')
+                            ->danger()->send();
+
+                        return;
+                    }
+
                     $invitation = Invitation::create([
                         'email' => $data['email'],
                         'invited_by' => current_user()->name,
