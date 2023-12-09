@@ -33,7 +33,7 @@ class InvitationController extends Controller
         $mailData = [
             'title' => 'U have a invitation from TripleB',
             'link' => $invitation->getLink(),
-            'invited_by' => current_user()->username,
+            'invited_by' => current_user()->name,
             'invited_date' => now()
         ];
 
