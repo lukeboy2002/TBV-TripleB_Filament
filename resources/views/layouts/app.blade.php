@@ -50,7 +50,7 @@
     </footer>
 </div>
 
-@stack('modals')
+{{--@stack('modals')--}}
 
 <livewire:scripts />
 @stack('scripts')
