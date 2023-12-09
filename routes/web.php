@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('members', [\App\Http\Controllers\MemberController::class, 'index'])->name('members.index');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

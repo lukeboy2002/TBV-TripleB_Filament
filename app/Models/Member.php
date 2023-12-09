@@ -35,6 +35,10 @@ class Member extends Model implements HasMedia
         return $this->belongsTo(User::class);
     }
 
+    public function age()
+    {
+        return Carbon::parse($this->attributes['birthdate'])->age;
+    }
     /**
      * @throws InvalidManipulation
      */
@@ -44,11 +48,11 @@ class Member extends Model implements HasMedia
             ->fit(Manipulations::FIT_MAX, 250, 250);
     }
 
-    protected function birthdate(): Attribute
-    {
-        return Attribute::make(
-            set: fn($value) => Carbon::createFromFormat('m/d/Y', $value)
-                ->format('Y-m-d'),
-        );
-    }
+//    protected function birthdate(): Attribute
+//    {
+//        return Attribute::make(
+//            set: fn($value) => Carbon::createFromFormat('m/d/Y', $value)
+//                ->format('Y-m-d'),
+//        );
+//    }
 }

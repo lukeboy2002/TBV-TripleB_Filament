@@ -27,7 +27,7 @@ class RonSeeder extends Seeder
 
         Member::create([
             'user_id' => $user->id,
-            'image' => "members/Ron.jpeg"
+            'image' => "members/Ron.jpg"
         ]);
 
         //generate image

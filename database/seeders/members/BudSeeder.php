@@ -27,7 +27,7 @@ class BudSeeder extends Seeder
 
         Member::create([
             'user_id' => $user->id,
-            'image' => "members/Bud.jpeg"
+            'image' => "members/Bud.jpg"
         ]);
 
         //generate image

@@ -2,7 +2,7 @@
     <i class="fa-sharp fa-solid fa-house mr-2"></i>
     home
 </x-link.btn-menu>
-<x-link.btn-menu class="text-xs font-medium" href="#">
+<x-link.btn-menu class="text-xs font-medium" href="{{ route('members.index') }}" :active="request()->routeIs('members.*')">
     <i class="fa-solid fa-people-group mr-2"></i>
     Team
 </x-link.btn-menu>

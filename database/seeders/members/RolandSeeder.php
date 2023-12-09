@@ -27,7 +27,7 @@ class RolandSeeder extends Seeder
 
         Member::create([
             'user_id' => $user->id,
-            'image' => "members/Roland.jpeg"
+            'image' => "members/Roland.jpg"
         ]);
 
         //generate image
