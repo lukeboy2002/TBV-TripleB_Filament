@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\migrations\RuudSeeder;
 use Database\Seeders\members\AlbertSeeder;
 use Database\Seeders\members\AntoineSeeder;
 use Database\Seeders\members\BeukSeeder;
@@ -16,7 +17,6 @@ use Database\Seeders\members\PatrickSeeder;
 use Database\Seeders\members\RichardSeeder;
 use Database\Seeders\members\RolandSeeder;
 use Database\Seeders\members\RonSeeder;
-use Database\Seeders\members\RuudSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

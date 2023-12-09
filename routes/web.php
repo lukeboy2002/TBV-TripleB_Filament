@@ -31,4 +31,7 @@ Route::middleware([
 
 Route::prefix('admin')->name('admin.')->middleware(['auth:web', config('jetstream.auth_session'), 'verified', 'role:member|admin'])->group(function () {
     Route::post('member', [\App\Http\Controllers\Admin\MemberUploadController::class, 'upload'])->name('member.upload');
+
+    Route::get('invite/create', [\App\Http\Controllers\Admin\InvitationController::class, 'create'])->name('invitations.create');
+    Route::post('invite', [\App\Http\Controllers\Admin\InvitationController::class, 'store'])->name('invitations.store');
 });
