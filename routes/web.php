@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('user/create', [\App\Http\Controllers\UserController::class, 'create'] )->name('user.create')->middleware('HasInvitation');
 Route::post('user/store', [\App\Http\Controllers\UserController::class, 'store'])->name('user.store');
