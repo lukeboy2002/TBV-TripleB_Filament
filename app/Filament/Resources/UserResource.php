@@ -6,6 +6,8 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -27,7 +29,10 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('name')->readOnly(),
+                TextInput::make('email')->readOnly(),
+                Select::make('roles')->multiple()->relationship('roles', 'name'),
+                Select::make('permissions')->multiple()->relationship('permissions', 'name')
             ]);
     }
 
@@ -69,7 +74,7 @@ class UserResource extends Resource
 
             ])
             ->actions([
-//                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()->label(''),
                 Tables\Actions\DeleteAction::make()->label(''),
                 Tables\Actions\ForceDeleteAction::make()->label(''),
                 Tables\Actions\RestoreAction::make()->label('')->icon('heroicon-o-arrow-path'),
@@ -86,7 +91,8 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\PermissionsRelationManager::class,
+            RelationManagers\RolesRelationManager::class,
         ];
     }
 
