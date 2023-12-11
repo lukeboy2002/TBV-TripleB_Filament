@@ -69,7 +69,10 @@ class UserResource extends Resource
 
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+//                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()->label(''),
+                Tables\Actions\ForceDeleteAction::make()->label(''),
+                Tables\Actions\RestoreAction::make()->label('')->icon('heroicon-o-arrow-path'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
