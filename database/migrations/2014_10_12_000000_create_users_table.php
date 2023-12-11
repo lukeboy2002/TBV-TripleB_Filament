@@ -15,11 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('email')->unique();
+            $table->string('invited_by')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
+            $table->boolean('logged_in')->nullable()->default(false);
+            $table->datetime('last_login_time')->nullable();
+            $table->text('last_login_ip')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

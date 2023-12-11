@@ -6,18 +6,19 @@
 
         <div class="bg-gray-800 flex flex-col justify-center">
             <x-card.default class="max-w-[400px]">
-                <form method="POST" action="{{ route('register') }}" class=" space-y-6">
+                <form action="{{ route('user.store') }}" method="POST" class="space-y-6">
                     @csrf
-                    <h2 class='text-3xl text-orange-500 font-bold text-center'>Register your account</h2>
+                    <h2 class='text-3xl text-orange-500 font-bold text-center'>Complete your invitation</h2>
+                    <input type="hidden" id="invited_by" name="invited_by" value="{{ $invitation->invited_by }}">
 
                     <div>
-                        <x-form.label for="name" value="name" />
+                        <x-form.label for="name" value="Username" />
                         <x-form.input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                         <x-form.input-error for="name" class="mt-2" />
                     </div>
                     <div class="mt-4">
-                        <x-form.label for="email" value="Email" />
-                        <x-form.input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="email" />
+                        <x-form.label for="email" value="{{ __('Email') }}" />
+                        <x-form.input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $email)" required autocomplete="email" />
                         <x-form.input-error for="email" class="mt-2" />
                     </div>
                     <div class="mt-4">
@@ -45,9 +46,6 @@
                             </x-form.label>
                         </div>
                     @endif
-                    <div class="flex items-center justify-end">
-                        <x-link.primary href="{{ route('login') }}">Already registered?</x-link.primary>
-                    </div>
                     <x-button.primary class="px-5 py-2.5 text-sm font-medium w-full">Register</x-button.primary>
                 </form>
             </x-card.default>

@@ -12,6 +12,9 @@
         <x-link.dropdown class="block" href="#">Settings</x-link.dropdown>
     @endunlessrole
     <x-link.dropdown class="block" href="{{ route('profile.show', current_user()->name) }}">Your Profile</x-link.dropdown>
+    @unlessrole('user')
+        <x-link.dropdown class="block" href="{{ route('admin.invitations.create') }}">Invite User</x-link.dropdown>
+    @endunlessrole
     <x-link.dropdown class="block" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign out</x-link.dropdown>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf

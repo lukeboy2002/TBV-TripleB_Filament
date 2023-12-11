@@ -15,7 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
+Route::get('user/create', [\App\Http\Controllers\UserController::class, 'create'] )->name('user.create')->middleware('HasInvitation');
+Route::post('user/store', [\App\Http\Controllers\UserController::class, 'store'])->name('user.store');
 
 Route::get('members', [\App\Http\Controllers\MemberController::class, 'index'])->name('members.index');
 
@@ -31,4 +34,7 @@ Route::middleware([
 
 Route::prefix('admin')->name('admin.')->middleware(['auth:web', config('jetstream.auth_session'), 'verified', 'role:member|admin'])->group(function () {
     Route::post('member', [\App\Http\Controllers\Admin\MemberUploadController::class, 'upload'])->name('member.upload');
+
+    Route::get('invite/create', [\App\Http\Controllers\Admin\InvitationController::class, 'create'])->name('invitations.create');
+    Route::post('invite', [\App\Http\Controllers\Admin\InvitationController::class, 'store'])->name('invitations.store');
 });
