@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\migrations;
+namespace Database\Seeders\members;
 
 use App\Models\Member;
 use App\Models\Role;

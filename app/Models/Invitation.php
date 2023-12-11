@@ -9,8 +9,6 @@ class Invitation extends Model
 {
     protected $fillable = [
         'email',
-        'title',
-        'link',
         'invited_by',
         'invited_date',
         'invitation_token',
@@ -21,7 +19,7 @@ class Invitation extends Model
         'invited_date' => 'datetime',
     ];
 
-    public function generateInvitationToken()
+    public function generateInvitationToken(): void
     {
         $this->invitation_token = substr(md5(rand(0, 9).$this->email.time()), 0, 32);
     }
@@ -29,7 +27,7 @@ class Invitation extends Model
     /**
      * @return string
      */
-    public function getLink()
+    public function getLink(): string
     {
         return urldecode(route('user.create').'?invitation_token='.$this->invitation_token);
     }

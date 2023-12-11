@@ -23,7 +23,7 @@ class InvitationController extends Controller
 
         $invitation = Invitation::create([
             'email' => $request['email'],
-            'invited_by' => current_user()->username,
+            'invited_by' => current_user()->name,
             'invited_date' => now()
         ]);
 
